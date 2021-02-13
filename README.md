@@ -10,15 +10,15 @@
 
 I got tired of using the mouse with Asana, so I built Vim-like keybindings.
 
-If you use Vimium, you must create an exclude rule for the Asana app in order to use Visana.
-
-Note in this demo the mouse doesn't move at all.
+Note in the demo video below the mouse doesn't move at all.
 
 ![Visana demo](https://raw.githubusercontent.com/kespindler/visana/master/demo.gif)
 
 # Installation
 
-Go to the Chrome Web Store.
+Right now you can run this as an unpacked Chrome extension. I'm waiting on publication to the Chrome store.
+
+If you use Vimium, you must create an exclude rule for the Asana app in order to use Visana.
 
 # Shortcuts
 
