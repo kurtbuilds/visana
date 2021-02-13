@@ -3,11 +3,13 @@
 **Manage tasks with Vim-like keyboard shortcuts for Asana**
 
 > **WARNING**: This is alpha quality software. 
-> It works great for me, but it might do anything up to deleting every task.
-> Use at your own risk. If you do use it, I'd appreciate bug reports, shortcut suggestions,
+> It works great for me, but it might do anything up to and including deleting every task.
+> (I've never lost data using this, I'm just being clear the bar is very low.)
+> Use at your own risk. If you do use it, I appreciate bug reports, shortcut suggestions,
 > or feature suggestions, or other UI/UX improvements.
 
 I got tired of using the mouse with Asana, so I built Vim-like keybindings.
+
 If you use Vimium, you must create an exclude rule for the Asana app in order to use Visana.
 
 # Installation
