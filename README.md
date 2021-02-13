@@ -12,6 +12,8 @@ I got tired of using the mouse with Asana, so I built Vim-like keybindings.
 
 If you use Vimium, you must create an exclude rule for the Asana app in order to use Visana.
 
+Note in this demo the mouse doesn't move at all.
+
 ![Visana demo](https://raw.githubusercontent.com/kespindler/visana/master/demo.gif)
 
 # Installation
