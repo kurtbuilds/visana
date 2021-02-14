@@ -1,3 +1,5 @@
+![Visana logo](https://raw.githubusercontent.com/kespindler/visana/master/icon128.png)
+
 # Visana
 
 **Manage tasks with Vim-like keyboard shortcuts for Asana**
@@ -28,6 +30,8 @@ If you use Vimium, you must create an exclude rule for the Asana app in order to
 
 `t` Set due date for currently selected task to today
 
+`w` Set due date for currently selected task to tomorrow
+
 ### Focus movement
 
 `j` Move down one line
@@ -39,6 +43,8 @@ If you use Vimium, you must create an exclude rule for the Asana app in order to
 `K` Modify selection moving up one line
 
 `d` Focus on the due date field
+
+`p` Focus on the project field
 
 `a` Focus on the asignee field
 

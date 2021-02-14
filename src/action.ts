@@ -3,10 +3,18 @@ function sleep(ms: number): Promise<void> {
 }
 
 function get_active_cell(): Element | null {
-    if (document.activeElement && document.activeElement.classList.contains('SpreadsheetGridTaskNameCell')) {
-        return document.activeElement
+    let highligted = document.getElementById('highlightedCell')
+    if (highligted) {
+        if (highligted.classList.contains('SpreadsheetGridTaskNameCell')) {
+            return highligted
+        } else {
+            let cell = highligted.parentElement!.parentElement!.querySelector('.SpreadsheetGridTaskNameCell')
+            if (cell) {
+                return cell
+            }
+        }
     }
-    return document.getElementById('highlightedCell')
+    return null
 }
 
 function get_current_index(): number | null {
@@ -54,8 +62,13 @@ export function select_move(n: number) {
 }
 
 
-export function focus_assign() {
-    (document.querySelector('#highlightedCell .SpreadsheetTaskRow-assigneeCell') as HTMLElement).click()
+export function focus_assign(e: KeyboardEvent): HTMLElement {
+    e.preventDefault()
+    let cell_el = document.getElementById('highlightedCell') as HTMLElement
+    let row_el = cell_el.parentElement!.parentElement as HTMLElement
+    let assign_el = row_el.querySelector('.SpreadsheetTaskRow-assigneeCell') as HTMLElement
+    assign_el.click()
+    return assign_el
 }
 
 
@@ -68,16 +81,20 @@ export function focus_due_date(e: KeyboardEvent) {
 }
 
 
-export function focus_project_attribute() {
-    (document.querySelector('#highlightedCell .SpreadsheetTaskRow-projectsCell') as HTMLElement).click()
+export function focus_project_attribute(e: KeyboardEvent) {
+    e.preventDefault()
+    let cell_el = document.getElementById('highlightedCell') as HTMLElement
+    let row_el = cell_el.parentElement!.parentElement as HTMLElement
+    let project_el = row_el.querySelector('.SpreadsheetTaskRow-projectsCell .SpreadsheetPotsCell-clickTarget') as HTMLElement
+    project_el.click()
 }
 
 
-export async function set_due_today(e: KeyboardEvent) {
+export async function set_due_date(e: KeyboardEvent, date: Date) {
     let cell_el = document.getElementById('highlightedCell') as HTMLElement
     focus_due_date(e)
     let input_el = document.getElementById('due_date_input_id_select') as HTMLInputElement
-    input_el.value = new Date().toLocaleDateString('en-US', {
+    input_el.value = date.toLocaleDateString('en-US', {
         month: '2-digit',
         day: '2-digit',
         year: 'numeric',
@@ -95,8 +112,33 @@ export async function set_due_today(e: KeyboardEvent) {
     cell_el.focus()
 }
 
-export function set_assign_to_me() {
-    // TODO
+
+export async function set_due_today(e: KeyboardEvent) {
+    return set_due_date(e, new Date())
+}
+
+
+export async function set_due_tomorrow(e: KeyboardEvent) {
+    return set_due_date(e, new Date(+new Date() + 1000*60*60*24))
+}
+
+
+export function set_assign_to_me(e: KeyboardEvent) {
+    let cell_el = get_active_cell() as HTMLElement
+    focus_assign(e)
+    let input_el = cell_el.parentElement!.parentElement!.querySelector('input') as HTMLInputElement
+    input_el.value = 'me'
+    input_el.dispatchEvent(new Event('input', {
+        bubbles: true,
+        cancelable: true,
+    }))
+    input_el.dispatchEvent(new KeyboardEvent('keydown', {
+        bubbles: true,
+        cancelable: true,
+        view: window,
+        key: 'Enter',
+    }))
+    cell_el.focus()
 }
 
 

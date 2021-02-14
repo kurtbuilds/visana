@@ -5,7 +5,6 @@ let command_stack: string[] = []
 
 
 function push_command_stack(s: string): boolean {
-    console.log('pushing to stack', s)
     return true
 }
 
@@ -17,6 +16,7 @@ let command_map: {[key: string]: Function} = {
     // edit commands
     'm': action.set_assign_to_me,
     't': action.set_due_today,
+    'w': action.set_due_tomorrow,
 
     // focus movement
     'j': () => action.move_line(1),
@@ -25,6 +25,7 @@ let command_map: {[key: string]: Function} = {
     'K': () => action.select_move(-1),
     'd': action.focus_due_date,
     'a': action.focus_assign,
+    'p': action.focus_project_attribute,
     'c': action.focus_comments,
 
     // screen movement
@@ -66,7 +67,6 @@ function update_mode(new_active: Element): void {
 function update_last_active(): void {
     if (!document.activeElement) return
     update_mode(document.activeElement as HTMLElement)
-    console.log('New active element', document.activeElement)
 }
 
 function keydown_event_string(event: KeyboardEvent): string {
@@ -81,7 +81,6 @@ function handle_keydown(event: KeyboardEvent): void {
     // console.log(event.key, event.altKey, event.metaKey, event.shiftKey)
     let s = keydown_event_string(event)
     command_stack.push(s)
-    console.log(command_stack)
     let command = command_map[command_stack.join(' ')]
     if (command == null) {
         clear_command_stack()
@@ -107,7 +106,7 @@ Object.keys(command_map).forEach(k => {
 document.addEventListener('focus', update_last_active, true)
 document.addEventListener('keydown', handle_keydown)
 
-
-document.addEventListener('change', function (e) {console.log(e)})
-document.addEventListener('click', function (e) {console.log(e)})
-document.addEventListener('focus', function (e) {console.log(e)})
+// Debug tools
+// document.addEventListener('change', function (e) {console.log(e)})
+// document.addEventListener('click', function (e) {console.log(e)})
+// document.addEventListener('focus', function (e) {console.log(e)})
