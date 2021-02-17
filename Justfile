@@ -1,5 +1,8 @@
 export PATH := "./node_modules/.bin:" + env_var('PATH')
 
+help:
+    @just --list
+
 build:
     mkdir -p build
     esbuild src/main.ts --bundle --outfile=build/main.js
