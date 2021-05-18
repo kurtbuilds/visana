@@ -1,3 +1,5 @@
+import {update_mode} from "../mode";
+
 function sleep(ms: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -177,19 +179,24 @@ export function show_task_detail(e: KeyboardEvent) {
     el.click();
     // Going into detail leaves the task name (in the grid) in an editable state. The command "Enter" does that, so
     // we remove focus after opening the detail pane.
-    (document.activeElement as HTMLElement).blur()
+    ;(document.activeElement as HTMLElement).blur()
+    update_mode(null)
 }
 
 
-export function focus_comments(e: KeyboardEvent) {
-    e.preventDefault();
-    let el = document.getElementsByClassName('ProsemirrorEditor')[1] as HTMLElement
-    el.focus()
-    // put focus on the end of any existing content instead of at the start (which is what happens by default.)
-    let sel = window.getSelection()!
-    let range = document.createRange()
-    range.selectNodeContents(el)
-    sel.removeAllRanges()
-    sel.addRange(range)
-    document.getSelection()!.collapseToEnd()
+
+export function open_sort_menu() {
+    (document.getElementsByClassName('SortMenu')[0] as HTMLElement).click()
+    update_mode(null)
+}
+
+export function sort_due_date() {
+    document.getElementById('view_options_sort_ByDate')?.click()
+    update_mode(null)
+}
+
+export function sort_none() {
+    document.getElementById('view_options_sort_ByPriority')?.click()
+    update_mode(null)
+
 }
