@@ -1,0 +1,23 @@
+lockfileVersion: 5.3
+
+specifiers:
+  esbuild: ^0.8.44
+  hotkeys-js: ^3.8.2
+  src: file:./src
+
+dependencies:
+  esbuild: 0.8.57
+  hotkeys-js: 3.8.7
+  src: link:src
+
+packages:
+
+  /esbuild/0.8.57:
+    resolution: {integrity: sha512-j02SFrUwFTRUqiY0Kjplwjm1psuzO1d6AjaXKuOR9hrY0HuPsT6sV42B6myW34h1q4CRy+Y3g4RU/cGJeI/nNA==}
+    hasBin: true
+    requiresBuild: true
+    dev: false
+
+  /hotkeys-js/3.8.7:
+    resolution: {integrity: sha512-ckAx3EkUr5XjDwjEHDorHxRO2Kb7z6Z2Sxul4MbBkN8Nho7XDslQsgMJT+CiJ5Z4TgRxxvKHEpuLE3imzqy4Lg==}
+    dev: false
